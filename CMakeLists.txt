@@ -9,7 +9,7 @@ set(PATCH_VERSION 0)
 
 add_subdirectory(Frothleikr)
 
-include_directories(Frothleikr/include)
+include_directories(${CMAKE_SOURCE_DIR}/Frothleikr/include)
 include_directories(include)
 
 set(SOURCE_FILES
