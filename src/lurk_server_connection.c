@@ -7,6 +7,7 @@
 #include<string.h>
 #include<arpa/inet.h>
 #include<unistd.h>
+#include<stdio.h>
 
 struct lurk_server_connection * lurk_server_connection_allocate()
 {
@@ -23,6 +24,7 @@ struct lurk_server_connection * lurk_server_connection_make(
         const char * hostname, int port_number)
 {
 
+    printf("Making connection...\n");
     struct lurk_server_connection * connection  = lurk_server_connection_allocate();
 
     connection->hostname = malloc(strlen(hostname));
@@ -37,6 +39,7 @@ struct lurk_server_connection * lurk_server_connection_make(
         lurk_server_connection_free(connection);
         return NULL;
     }
+    printf("Prepped socket...\n");
 
     connection->server = gethostbyname(connection->hostname);
 
@@ -45,18 +48,21 @@ struct lurk_server_connection * lurk_server_connection_make(
         lurk_server_connection_free(connection);
         return NULL;
     }
+    printf("Prepped hostent...\n");
 
     connection->server_address.sin_family = AF_INET;
     connection->server_address.sin_port = (in_port_t)port_number;
 
     struct in_addr ** addr_list = (struct in_addr * *)connection->server->h_addr_list;
     connection->server_address.sin_addr = *(addr_list[0]);
+    printf("Prepped server address...\n");
 
     connect(
             connection->socket,
             (struct sockaddr *)&connection->server_address,
             sizeof(struct sockaddr_in)
     );
+    printf("Connected....\n");
 }
 
 void lurk_server_connection_close(struct lurk_server_connection * connection)
