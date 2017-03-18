@@ -5,7 +5,7 @@
 #ifndef LURK_LURK_DATA_SOURCE_H
 #define LURK_LURK_DATA_SOURCE_H
 
-#include<ftr_types.h>
+#include"ftr_types.h"
 
 #define LURK_DATA_SOURCE_FROM_SERVER 0
 #define LURK_DATA_SOURCE_FROM_CLIENT 1
