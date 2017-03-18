@@ -57,7 +57,7 @@ struct lurk_server_connection * lurk_server_connection_make(
     struct in_addr ** addr_list = (struct in_addr * *)connection->server->h_addr_list;
     connection->server_address.sin_addr = *(addr_list[0]);
     char * ip = inet_ntoa(*addr_list[0]);
-    printf("IP: %s",ip);
+    printf("IP: %s\n",ip);
     printf("Prepped server address...\n");
 
     if(connect(
