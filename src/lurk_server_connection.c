@@ -24,52 +24,35 @@ void lurk_server_connection_free(struct lurk_server_connection * connection)
 struct lurk_server_connection * lurk_server_connection_make(
         const char * hostname, int port_number)
 {
+    struct sockaddr_in sad;
 
-    printf("Making connection...\n");
-    struct lurk_server_connection * connection  = lurk_server_connection_allocate();
+    sad.sin_port = (in_port_t)port_number;
+    sad.sin_family = AF_INET;
+
+    int skt = socket(AF_INET, SOCK_STREAM, 0);
+
+    struct hostent * server = gethostbyname(hostname);
+    struct in_addr ** addr_list = (struct in_addr**)server->h_addr_list;
+    struct in_addr * addr = addr_list[0];
+    sad.sin_addr = *addr;
+
+    if(connect(skt, (struct sockaddr*)&sad, sizeof(struct sockaddr_in)) != 0)
+    {
+        return NULL;
+    }
+
+    struct lurk_server_connection * connection = lurk_server_connection_allocate();
+    connection->server = server;
 
     connection->hostname = malloc(strlen(hostname));
     strcpy(connection->hostname, hostname);
 
     connection->port_number = port_number;
 
-    connection->socket = socket(AF_INET, SOCK_STREAM, 0);
+    connection->socket = skt;
 
-    if(connection->socket < 0)
-    {
-        lurk_server_connection_free(connection);
-        return NULL;
-    }
-    printf("Prepped socket...\n");
+    connection->server_address = sad;
 
-    connection->server = gethostbyname(connection->hostname);
-
-    if(connection->server == NULL)
-    {
-        lurk_server_connection_free(connection);
-        return NULL;
-    }
-    printf("Prepped hostent...\n");
-
-    connection->server_address.sin_family = AF_INET;
-    connection->server_address.sin_port = (in_port_t)port_number;
-
-    struct in_addr ** addr_list = (struct in_addr * *)connection->server->h_addr_list;
-    connection->server_address.sin_addr = *(addr_list[0]);
-    char * ip = inet_ntoa(*addr_list[0]);
-    printf("IP: %s\n",ip);
-    printf("Prepped server address...\n");
-
-    if(connect(
-            connection->socket,
-            (struct sockaddr *)&connection->server_address,
-            sizeof(struct sockaddr_in)) != 0 )
-    {
-        printf("Failed to connect\n");
-        lurk_server_connection_free(connection);
-        return NULL;
-    }
-    printf("Connected....\n");
     return connection;
 }
 
