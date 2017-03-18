@@ -9,6 +9,7 @@
 #include<unistd.h>
 #include<stdio.h>
 #include<netinet/ip.h>
+#include <ftr_types.h>
 
 struct lurk_server_connection * lurk_server_connection_allocate()
 {
@@ -26,7 +27,7 @@ struct lurk_server_connection * lurk_server_connection_make(
 {
     struct sockaddr_in sad;
 
-    sad.sin_port = (in_port_t)port_number;
+    sad.sin_port = htons((ftr_u16)port_number);
     sad.sin_family = AF_INET;
 
     int skt = socket(AF_INET, SOCK_STREAM, 0);
