@@ -68,7 +68,7 @@ ftr_u16 lurk_data_source_read_u16(struct lurk_data_source * source)
     struct ftr_brokeu16 broke;
     memcpy(broke.bytes, data, sizeof(ftr_u16));
     free(data);
-    return ftr_assemble_u16b(&broke);
+    return ftr_assemble_u16l(&broke);
 }
 
 ftr_s16 lurk_data_source_read_s16(struct lurk_data_source * source)
@@ -77,5 +77,5 @@ ftr_s16 lurk_data_source_read_s16(struct lurk_data_source * source)
     struct ftr_brokes16 broke;
     memcpy(broke.bytes, data, sizeof(ftr_s16));
     free(data);
-    return ftr_assemble_s16b(&broke);
+    return ftr_assemble_s16l(&broke);
 }
