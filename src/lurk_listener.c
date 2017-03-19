@@ -27,7 +27,7 @@ struct lurk_listener * lurk_listener_make(int port_number)
         return NULL;
     }
 
-    bind(result->socket, (struct sockaddr *)&sad, sizeof(struct sockaddr_in));
+    bind(result->socket, (struct sockaddr *)&result->sad, sizeof(struct sockaddr_in));
     listen(result->socket, 5);
 
     return result;
