@@ -48,7 +48,9 @@ char * lurk_data_source_read(struct lurk_data_source * source, ftr_u32 size)
     }
     else if(source->type == LURK_DATA_SOURCE_FROM_CLIENT)
     {
-        // TODO
+        struct lurk_client_connection * connection = source->client_connection;
+        result = malloc(size);
+        read(connection->socket, result, size);
     }
 
     return result;

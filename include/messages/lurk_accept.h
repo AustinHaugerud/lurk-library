@@ -24,4 +24,8 @@ void lurk_accept_head_free(struct lurk_protocol_message * msg);
 
 void lurk_accept_read(struct lurk_protocol_message * self, struct lurk_data_source * src);
 
+ftr_u16 lurk_accept_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_accept_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_ACCEPT_H

@@ -16,7 +16,7 @@ struct lurk_connection
 
     ftr_u16 room_number;
 
-    ftr_u8 room_name[32];
+    ftr_u8 room_name[LURK_CONNECTION_ROOM_NAME_LENGTH];
 
     ftr_u16 description_length;
 
@@ -32,5 +32,9 @@ void lurk_connection_free(struct lurk_connection *);
 void lurk_connection_head_free(struct lurk_protocol_message * msg);
 
 void lurk_connection_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
+
+ftr_u16 lurk_connection_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_connection_blob(struct lurk_protocol_message * msg);
 
 #endif //LURK_LURK_CONNECTION_H

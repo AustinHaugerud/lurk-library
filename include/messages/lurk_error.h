@@ -39,4 +39,8 @@ void lurk_error_free(struct lurk_error *);
 
 void lurk_error_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_error_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_error_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_ERROR_H

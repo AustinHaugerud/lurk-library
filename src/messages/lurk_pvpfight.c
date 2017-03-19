@@ -38,3 +38,20 @@ void lurk_pvpfight_read(struct lurk_protocol_message * msg, struct lurk_data_sou
     memcpy(ref->target_name, nameData, LURK_PVPFIGHT_TARGET_NAME_LENGTH);
     free(nameData);
 }
+
+ftr_u16 lurk_pvpfight_blob_size(struct lurk_protocol_message * msg)
+{
+    return LURK_BASE_SIZE + LURK_PVPFIGHT_TARGET_NAME_LENGTH;
+}
+
+ftr_u8 * lurk_pvpfight_blob(struct lurk_protocol_message * msg)
+{
+    ftr_u16 size = lurk_message_size(msg);
+    struct lurk_pvpfight * ref = lurk_message_cast(lurk_pvpfight, msg);
+
+    ftr_u8 * data = malloc(size);
+    data[0] = msg->type;
+    memcpy(data + 1, ref->target_name, LURK_PVPFIGHT_TARGET_NAME_LENGTH);
+
+    return data;
+}

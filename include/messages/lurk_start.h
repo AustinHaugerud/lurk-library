@@ -23,4 +23,8 @@ void lurk_start_free(struct lurk_start *);
 
 void lurk_start_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_start_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_start_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_START_H

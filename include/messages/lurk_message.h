@@ -35,4 +35,8 @@ void lurk_message_free(struct lurk_message * );
 
 void lurk_message_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_message_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_message_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_MESSAGE_H

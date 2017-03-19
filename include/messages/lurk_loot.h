@@ -26,4 +26,8 @@ void lurk_loot_free(struct lurk_loot *);
 
 void lurk_loot_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_loot_blob_size(struct lurk_protocol_message *);
+
+ftr_u8 * lurk_loot_blob(struct lurk_protocol_message *);
+
 #endif //LURK_LURK_LOOT_H

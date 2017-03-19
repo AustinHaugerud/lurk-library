@@ -22,6 +22,8 @@
 #define LURK_LEAVE 12
 #define LURK_CONNECTION 13
 
+#define LURK_BASE_SIZE 1
+
 #define lurk_message_cast(T,M) (struct T *)(M->derived)
 
 #define lurk_message_upcast(C) (struct lurk_protocol_message *)(C->protocol)
@@ -46,9 +48,18 @@
 
 #define lurk_head_bind_refs(C,T) C->protocol->derived=C; \
                                  C->protocol->free = T ## _head_free; \
-                                 C->protocol->read = T ## _read;
+                                 C->protocol->read = T ## _read; \
+                                 C->protocol->blob = T ## _blob; \
+                                 C->protocol->blob_size = T ## _blob_size;
 
 #define lurk_free_head(C) lurk_protocol_message_free(C->protocol)
+
+#define lurk_message_size(M) M->blob_size(M)
+#define lurk_protocol_message_blob(M) M->blob(M)
+
+#define lurk_message_type(C) C->protocol->type
+
+struct ftr_io_buffer_seeker;
 
 struct lurk_protocol_message
 {
@@ -58,11 +69,17 @@ struct lurk_protocol_message
     void (*read)(struct lurk_protocol_message * self, struct lurk_data_source * src);
 
     void (*free)(struct lurk_protocol_message * self);
+
+    ftr_u8 * (*blob)(struct lurk_protocol_message *);
+
+    ftr_u16 (*blob_size)(struct lurk_protocol_message *);
 };
 
 struct lurk_protocol_message * lurk_protocol_message_allocate();
 
 void lurk_protocol_message_free(struct lurk_protocol_message * msg);
+
+void lurk_protocol_message_type_write(struct lurk_protocol_message *, struct ftr_io_buffer_seeker *);
 
 struct lurk_protocol_message * __alloc_lurk_message_head__(int type);
 

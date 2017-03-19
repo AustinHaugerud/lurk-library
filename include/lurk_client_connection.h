@@ -7,7 +7,13 @@
 
 struct lurk_client_connection
 {
-
+    int socket;
 };
+
+struct lurk_client_connection * lurk_client_connection_allocate();
+
+void lurk_client_connection_free(struct lurk_client_connection *);
+
+void lurk_client_connection_close(struct lurk_client_connection *);
 
 #endif //LURK_LURK_CLIENT_CONNECTION_H

@@ -33,4 +33,8 @@ void lurk_game_free(struct lurk_game *);
 
 void lurk_game_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_game_blob_size(struct lurk_protocol_message *);
+
+ftr_u8 * lurk_game_blob(struct lurk_protocol_message *);
+
 #endif //LURK_LURK_GAME_H

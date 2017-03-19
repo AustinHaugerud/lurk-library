@@ -23,4 +23,8 @@ void lurk_fight_free(struct lurk_fight *);
 
 void lurk_fight_read(struct lurk_protocol_message *, struct lurk_data_source * src);
 
+ftr_u16 lurk_fight_blob_size(struct lurk_protocol_message *);
+
+ftr_u8 * lurk_fight_blob(struct lurk_protocol_message *);
+
 #endif //LURK_LURK_FIGHT_H

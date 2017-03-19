@@ -25,4 +25,8 @@ void lurk_changeroom_head_free(struct lurk_protocol_message *);
 
 void lurk_changeroom_read(struct lurk_protocol_message * self, struct lurk_data_source * src);
 
+ftr_u16 lurk_changeroom_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_changeroom_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_CHANGEROOM_H

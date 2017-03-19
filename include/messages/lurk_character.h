@@ -57,6 +57,20 @@ int lurk_character_started(struct lurk_character *);
 
 int lurk_character_ready(struct lurk_character *);
 
+void lurk_character_set_alive(struct lurk_character *, int status);
+
+void lurk_character_set_join_battle(struct lurk_character *, int status);
+
+void lurk_character_set_monster(struct lurk_character *, int status);
+
+void lurk_character_set_started(struct lurk_character *, int status);
+
+void lurk_character_set_ready(struct lurk_character *, int status);
+
 void lurk_character_read(struct lurk_protocol_message * self, struct lurk_data_source * src);
+
+ftr_u16 lurk_character_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_character_blob(struct lurk_protocol_message * msg);
 
 #endif //LURK_LURK_CHARACTER_H

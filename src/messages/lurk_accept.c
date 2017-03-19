@@ -3,6 +3,8 @@
 //
 
 #include<stdlib.h>
+#include <frothleikr.h>
+#include <string.h>
 #include"messages/lurk_accept.h"
 
 struct lurk_accept * lurk_accept_allocate()
@@ -34,4 +36,29 @@ void lurk_accept_read(struct lurk_protocol_message * self, struct lurk_data_sour
 {
     struct lurk_accept * ref = lurk_message_cast(lurk_accept, self);
     ref->action_type = lurk_data_source_read_u8(src);
+}
+
+ftr_u16 lurk_accept_blob_size(struct lurk_protocol_message * msg)
+{
+    return LURK_BASE_SIZE +
+            sizeof(ftr_u8); // action type
+}
+
+ftr_u8 * lurk_accept_blob(struct lurk_protocol_message * msg)
+{
+    ftr_u16 size = lurk_message_size(msg);
+
+    struct ftr_io_buffer * buffer = ftr_create_buffer(size);
+    struct lurk_accept * ref = lurk_message_cast(lurk_accept, msg);
+    struct ftr_io_buffer_seeker seeker;
+    ftr_init_seeker(buffer, &seeker, "w");
+    lurk_protocol_message_type_write(msg, &seeker);
+    ftr_swrite_bytes(&seeker, &ref->action_type, sizeof(ftr_u8));
+
+    ftr_u8 * data = malloc(size);
+    memcpy(data, buffer->data, size);
+
+    ftr_free_buffer(buffer);
+
+    return data;
 }

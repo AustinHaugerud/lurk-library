@@ -4,6 +4,7 @@
 
 #include"messages/lurk_fight.h"
 #include <malloc.h>
+#include <string.h>
 
 struct lurk_fight * lurk_fight_allocate()
 {
@@ -34,4 +35,16 @@ void lurk_fight_read(struct lurk_protocol_message * msg, struct lurk_data_source
 {
     // Do nothing, the fight message has no contents
     // This function is just here so protocol:read has something to point at
+}
+
+ftr_u16 lurk_fight_blob_size(struct lurk_protocol_message * msg)
+{
+    return LURK_BASE_SIZE;
+}
+
+ftr_u8 * lurk_fight_blob(struct lurk_protocol_message * msg)
+{
+    ftr_u8 * data = malloc(sizeof(ftr_u8));
+    memcpy(data, &msg->type, sizeof(ftr_u8));
+    return data;
 }

@@ -4,6 +4,7 @@
 
 #include"messages/lurk_leave.h"
 #include<stdlib.h>
+#include <string.h>
 
 struct lurk_leave * leave_leave_allocate()
 {
@@ -27,4 +28,16 @@ void lurk_leave_free(struct lurk_leave * msg)
 void lurk_leave_read(struct lurk_protocol_message * msg, struct lurk_data_source * src)
 {
     // Do nothing
+}
+
+ftr_u16 lurk_leave_blob_size(struct lurk_protocol_message * msg)
+{
+    return LURK_BASE_SIZE;
+}
+
+ftr_u8 * lurk_leave_blob(struct lurk_protocol_message * msg)
+{
+    ftr_u8 * data = malloc(lurk_message_size(msg));
+    memcpy(data, &msg->type, sizeof(ftr_u8));
+    return data;
 }

@@ -23,4 +23,8 @@ void lurk_leave_free(struct lurk_leave *);
 
 void lurk_leave_read(struct lurk_protocol_message * msg, struct lurk_data_source * src);
 
+ftr_u16 lurk_leave_blob_size(struct lurk_protocol_message * msg);
+
+ftr_u8 * lurk_leave_blob(struct lurk_protocol_message * msg);
+
 #endif //LURK_LURK_LEAVE_H

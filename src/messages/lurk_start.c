@@ -3,6 +3,7 @@
 //
 
 #include<stdlib.h>
+#include <string.h>
 #include"messages/lurk_start.h"
 
 struct lurk_start * lurk_start_allocate()
@@ -33,4 +34,16 @@ void lurk_start_free(struct lurk_start * msg)
 void lurk_start_read(struct lurk_protocol_message * msg, struct lurk_data_source * src)
 {
     // Do nothing
+}
+
+ftr_u16 lurk_start_blob_size(struct lurk_protocol_message * msg)
+{
+    return LURK_BASE_SIZE;
+}
+
+ftr_u8 * lurk_start_blob(struct lurk_protocol_message * msg)
+{
+    ftr_u8 * data = malloc(sizeof(ftr_u8));
+    memcpy(data, &msg->type, sizeof(ftr_u8));
+    return data;
 }
