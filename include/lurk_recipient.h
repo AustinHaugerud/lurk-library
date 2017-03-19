@@ -9,6 +9,8 @@ struct lurk_server_connection;
 struct lurk_client_connection;
 struct lurk_protocol_message;
 
+#include<ftr_types.h>
+
 #define LURK_RECIPIENT_SERVER 0
 #define LURK_RECIPIENT_CLIENT 1
 
