@@ -43,16 +43,16 @@ set(SOURCE_FILES
         src/messages/lurk_connection.c
         include/lurk_server_connection.h
         src/lurk_server_connection.c
-        include/lurk_reader.h
-        include/lurk_reader_server.h
-        include/lurk_reader_client.h
-        include/lurk_writer.h
-        include/lurk_writer_server.h
-        include/lurk_writer_client.h
         include/lurk_data_source.h
         src/lurk_data_source.c
         src/lurk_protocol_message.c
-        include/lurk_client_connection.h)
+        include/lurk_client_connection.h
+        include/lurk_listener.h
+        include/lurk_recipient.h
+        src/lurk_client_connection.c
+        src/lurk_listener.c
+        src/lurk_recipient.c)
+
 add_library(lurk ${SOURCE_FILES})
 
 target_link_libraries(lurk Frothleikr)
