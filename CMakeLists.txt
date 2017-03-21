@@ -51,7 +51,9 @@ set(SOURCE_FILES
         include/lurk_recipient.h
         src/lurk_client_connection.c
         src/lurk_listener.c
-        src/lurk_recipient.c)
+        src/lurk_recipient.c
+        include/lurk_message_allocator.h
+        src/lurk_message_allocator.c)
 
 add_library(lurk ${SOURCE_FILES})
 
