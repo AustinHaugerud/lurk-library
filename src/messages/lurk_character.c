@@ -161,6 +161,9 @@ ftr_u8 * lurk_character_blob(struct lurk_protocol_message * msg)
     // Write type
     lurk_protocol_message_type_write(msg, &seeker);
 
+    // Write name
+    ftr_swrite_bytes(&seeker, ref->name, LURK_CHARACTER_NAME_LENGTH);
+
     // Write flags
     ftr_swrite_bytes(&seeker, &ref->flags, sizeof(ftr_u8));
 
