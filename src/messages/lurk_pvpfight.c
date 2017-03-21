@@ -16,6 +16,7 @@ struct lurk_pvpfight * lurk_pvpfight_create()
     struct lurk_pvpfight * result = lurk_pvpfight_allocate();
     result->protocol = lurk_head_create_pvpfight();
     lurk_head_bind_refs(result, lurk_pvpfight);
+    return result;
 }
 
 void lurk_pvpfight_head_free(struct lurk_protocol_message * msg)
