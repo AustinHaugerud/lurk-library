@@ -6,7 +6,7 @@
 #include<stdlib.h>
 #include <string.h>
 
-struct lurk_leave * leave_leave_allocate()
+struct lurk_leave * lurk_leave_allocate()
 {
     return malloc(sizeof(struct lurk_leave));
 }
@@ -17,6 +17,12 @@ struct lurk_leave * lurk_leave_create()
     result->protocol = lurk_head_create_leave();
     lurk_head_bind_refs(result, lurk_leave);
     return result;
+}
+
+void lurk_leave_head_free(struct lurk_protocol_message * msg)
+{
+    struct lurk_leave * ref = lurk_message_cast(lurk_leave, msg);
+    lurk_leave_free(ref);
 }
 
 void lurk_leave_free(struct lurk_leave * msg)
