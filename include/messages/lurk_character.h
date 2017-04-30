@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_CHARACTER_H
 #define LURK_LURK_CHARACTER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"lurk_protocol_message.h"
 #include"lurk_data_source.h"
 
@@ -72,5 +76,9 @@ void lurk_character_read(struct lurk_protocol_message * self, struct lurk_data_s
 ftr_u16 lurk_character_blob_size(struct lurk_protocol_message * msg);
 
 ftr_u8 * lurk_character_blob(struct lurk_protocol_message * msg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_CHARACTER_H

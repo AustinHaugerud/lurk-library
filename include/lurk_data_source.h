@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_DATA_SOURCE_H
 #define LURK_LURK_DATA_SOURCE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"ftr_types.h"
 
 #define LURK_DATA_SOURCE_FROM_SERVER 0
@@ -36,5 +40,9 @@ char * lurk_data_source_read(struct lurk_data_source * source, ftr_u32 size);
 ftr_u8 lurk_data_source_read_u8(struct lurk_data_source * source);
 ftr_u16 lurk_data_source_read_u16(struct lurk_data_source * source);
 ftr_s16 lurk_data_source_read_s16(struct lurk_data_source * source);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_DATA_SOURCE_H

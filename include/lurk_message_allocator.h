@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_MESSAGE_ALLOCATOR_H
 #define LURK_LURK_MESSAGE_ALLOCATOR_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"lurk_protocol_message.h"
 #include"messages/lurk_accept.h"
 #include"messages/lurk_changeroom.h"
@@ -21,5 +25,9 @@
 #include"messages/lurk_start.h"
 
 struct lurk_protocol_message * lurk_allocate_message(int type);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_MESSAGE_ALLOCATOR_H

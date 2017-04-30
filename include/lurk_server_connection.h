@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_SERVER_CONNECTION_H
 #define LURK_LURK_SERVER_CONNECTION_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include<netdb.h>
 #include<netinet/in.h>
 
@@ -26,5 +30,9 @@ struct lurk_server_connection * lurk_server_connection_make(
         const char *hostname, int port_number);
 
 void lurk_server_connection_close(struct lurk_server_connection *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_SERVER_CONNECTION_H

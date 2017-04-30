@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_CHANGEROOM_H
 #define LURK_LURK_CHANGEROOM_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"lurk_protocol_message.h"
 #include"lurk_data_source.h"
 
@@ -28,5 +32,9 @@ void lurk_changeroom_read(struct lurk_protocol_message * self, struct lurk_data_
 ftr_u16 lurk_changeroom_blob_size(struct lurk_protocol_message * msg);
 
 ftr_u8 * lurk_changeroom_blob(struct lurk_protocol_message * msg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_CHANGEROOM_H

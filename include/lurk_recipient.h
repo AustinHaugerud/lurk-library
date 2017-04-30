@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_RECIPIENT_H
 #define LURK_LURK_RECIPIENT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct lurk_server_connection;
 struct lurk_client_connection;
 struct lurk_protocol_message;
@@ -41,5 +45,9 @@ void lurk_recipient_write_u16(struct lurk_recipient * recipient, ftr_u16 val);
 void lurk_recipient_write_s16(struct lurk_recipient * recipient, ftr_s16 val);
 
 void lurk_recipient_write_protocol_message(struct lurk_recipient *, struct lurk_protocol_message *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_RECIPIENT_H

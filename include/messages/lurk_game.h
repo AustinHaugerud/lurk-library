@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_GAME_H
 #define LURK_LURK_GAME_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"lurk_protocol_message.h"
 #include"lurk_data_source.h"
 
@@ -36,5 +40,9 @@ void lurk_game_read(struct lurk_protocol_message * msg, struct lurk_data_source 
 ftr_u16 lurk_game_blob_size(struct lurk_protocol_message *);
 
 ftr_u8 * lurk_game_blob(struct lurk_protocol_message *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_GAME_H

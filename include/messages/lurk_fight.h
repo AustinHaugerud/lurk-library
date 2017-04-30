@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_FIGHT_H
 #define LURK_LURK_FIGHT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include"lurk_protocol_message.h"
 #include"lurk_data_source.h"
 
@@ -26,5 +30,9 @@ void lurk_fight_read(struct lurk_protocol_message *, struct lurk_data_source * s
 ftr_u16 lurk_fight_blob_size(struct lurk_protocol_message *);
 
 ftr_u8 * lurk_fight_blob(struct lurk_protocol_message *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_FIGHT_H

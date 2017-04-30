@@ -5,6 +5,10 @@
 #ifndef LURK_LURK_HEADER_H
 #define LURK_LURK_HEADER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include<ftr_types.h>
 #include"lurk_data_source.h"
 
@@ -82,5 +86,9 @@ void lurk_protocol_message_free(struct lurk_protocol_message * msg);
 void lurk_protocol_message_type_write(struct lurk_protocol_message *, struct ftr_io_buffer_seeker *);
 
 struct lurk_protocol_message * __alloc_lurk_message_head__(int type);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //LURK_LURK_HEADER_H
