@@ -12,6 +12,8 @@ struct lurk_client_connection
 
 struct lurk_client_connection * lurk_client_connection_allocate();
 
+struct lurk_client_connection * lurk_client_connection_make(int socket);
+
 void lurk_client_connection_free(struct lurk_client_connection *);
 
 void lurk_client_connection_close(struct lurk_client_connection *);
