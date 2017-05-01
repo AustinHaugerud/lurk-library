@@ -57,6 +57,6 @@ set(SOURCE_FILES
         include/messages/lurk_messages.h
         include/lurk.hpp)
 
-add_library(lurk ${SOURCE_FILES})
+add_library(lurk STATIC ${SOURCE_FILES})
 
 target_link_libraries(lurk Frothleikr)
